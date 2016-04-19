@@ -1165,5 +1165,8 @@ Please submit bug reports, contribute new features and ask questions at
     <string name="openpgp_inline_ok">Got it!</string>
     <string name="openpgp_inline_disable">Disable</string>
     <string name="openpgp_inline_keep_enabled">Keep Enabled</string>
-
+    <string name="xoauth2_auth_cancelled_by_user">Authentication cancelled</string>
+    <string name="xoauth2_unable_to_contact_auth_server">Unable to contact authentication server</string>
+    <string name="xoauth2_error_contacting_auth_server">Error contacting authentication server</string>
+    <string name="xoauth2_account_doesnt_exist">Account doesn\'t exist</string>
 </resources>
