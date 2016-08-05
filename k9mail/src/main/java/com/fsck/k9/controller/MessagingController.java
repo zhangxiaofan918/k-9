@@ -42,6 +42,7 @@ import android.os.Process;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.annotation.VisibleForTesting;
+import android.support.annotation.WorkerThread;
 import android.util.Log;
 
 import com.fsck.k9.Account;
@@ -112,7 +113,7 @@ import com.fsck.k9.search.SqlQueryBuilder;
  * removed from the queue once the activity is no longer active.
  */
 @SuppressWarnings("unchecked") // TODO change architecture to actually work with generics
-public class MessagingController implements Runnable {
+public class MessagingController {
     public static final long INVALID_MESSAGE_ID = -1;
 
     private static final String[] EMPTY_STRING_ARRAY = new String[0];
@@ -169,7 +170,12 @@ public class MessagingController implements Runnable {
         this.notificationController = notificationController;
         this.contacts = contacts;
 
-        controllerThread = new Thread(this);
+        controllerThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                runInBackground();
+            }
+        });
         controllerThread.setName("MessagingController");
         controllerThread.start();
         addListener(memorizingMessagingListener);
@@ -182,8 +188,8 @@ public class MessagingController implements Runnable {
         controllerThread.join(1000L);
     }
 
-    @Override
-    public void run() {
+    @WorkerThread
+    private void runInBackground() {
         Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
         while (!stopped) {
             String commandDescription = null;
