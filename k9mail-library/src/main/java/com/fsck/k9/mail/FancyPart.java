@@ -129,7 +129,7 @@ public class FancyPart {
         return MimeUtility.isSameMimeType(getMimeType(), mimeType);
     }
 
-    public boolean isMatchingmimeType(String mimeTypePattern) {
+    public boolean isMatchingMimeType(String mimeTypePattern) {
         String mimeType = getMimeType();
         return mimeType != null && MimeUtility.mimeTypeMatches(mimeType, mimeTypePattern);
     }

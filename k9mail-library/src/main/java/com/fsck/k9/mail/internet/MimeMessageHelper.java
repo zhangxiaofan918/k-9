@@ -35,7 +35,7 @@ public class MimeMessageHelper {
         } else if (body instanceof TextBody) {
             FancyPart fancyPart = FancyPart.from(part);
             String contentType;
-            if (fancyPart.isMatchingmimeType("text/*")) {
+            if (fancyPart.isMatchingMimeType("text/*")) {
                 contentType = String.format("%s;\r\n charset=utf-8", fancyPart.getMimeType());
                 String name = fancyPart.getContentTypeName();
                 if (name != null) {

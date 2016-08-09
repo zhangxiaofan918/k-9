@@ -50,7 +50,7 @@ public class MessageExtractor {
                     return ((TextBody)body).getText();
                 }
                 FancyPart fancyPart = FancyPart.from(part);
-                if (fancyPart.isMatchingmimeType("text/*") || fancyPart.isMimeType("application/pgp")) {
+                if (fancyPart.isMatchingMimeType("text/*") || fancyPart.isMimeType("application/pgp")) {
                     return getTextFromTextPart(part, body, fancyPart.getMimeType(), textSizeLimit);
                 } else {
                     throw new MessagingException("Provided non-text part: " + part);

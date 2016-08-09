@@ -158,7 +158,7 @@ public class FancyPartTest {
     @Test
     public void testIsMatchingMimeType() throws Exception {
         part.setHeader(MimeHeader.HEADER_CONTENT_TYPE, TEST_CONTENT_TYPE_HEADER);
-        assertTrue(FancyPart.from(part).isMatchingmimeType("application/*"));
+        assertTrue(FancyPart.from(part).isMatchingMimeType("application/*"));
     }
 
     @Test
