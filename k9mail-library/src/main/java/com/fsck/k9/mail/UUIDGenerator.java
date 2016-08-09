@@ -11,6 +11,8 @@ public class UUIDGenerator {
         return INSTANCE;
     }
 
+    private UUIDGenerator() { }
+
     public UUID generateUUID() {
         return UUID.randomUUID();
     }
