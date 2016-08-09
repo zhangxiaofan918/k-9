@@ -171,11 +171,11 @@ public class FancyPart {
     @Nullable
     /** @see org.apache.james.mime4j.field.Fields */
     private static <T extends ParsedField> T parseHeaderToField(Part part, String fieldName, FieldParser<T> parser) {
-        String headerContentId = MimeUtility.unfoldAndDecode(part.getRawFirstHeader(fieldName));
-        if (headerContentId == null) {
+        String headerContent = MimeUtility.unfoldAndDecode(part.getRawFirstHeader(fieldName));
+        if (headerContent == null) {
             return null;
         }
-        RawField rawField = new RawField(fieldName, headerContentId);
+        RawField rawField = new RawField(fieldName, headerContent);
         return parser.parse(rawField, DecodeMonitor.SILENT);
     }
 }
