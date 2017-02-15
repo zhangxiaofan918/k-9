@@ -21,6 +21,7 @@ import android.util.Log;
 
 import com.fsck.k9.Account;
 import com.fsck.k9.K9;
+import com.fsck.k9.helper.HtmlConverter;
 import com.fsck.k9.helper.Utility;
 import com.fsck.k9.mail.Flag;
 import com.fsck.k9.mail.internet.MimeHeader;
@@ -79,6 +80,7 @@ class MigrationTo51 {
                 long messageId = msgCursor.getLong(0);
                 String messageFlags = msgCursor.getString(1);
                 String htmlContent = msgCursor.getString(2);
+                htmlContent = HtmlConverter.fixHtml(htmlContent);
                 String textContent = msgCursor.getString(3);
                 String mimeType = msgCursor.getString(4);
                 int attachmentCount = msgCursor.getInt(5);

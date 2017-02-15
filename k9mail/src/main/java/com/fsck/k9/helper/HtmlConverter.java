@@ -80,6 +80,9 @@ public class HtmlConverter {
                 + "\\-\\.\\+\\!\\*\\'\\(\\)\\,\\_])|(?:\\%[a-fA-F0-9]{2}))*)?"
                 + "(?:\\b|$)"); // and finally, a word boundary or end of
 
+    public static final String BLOCK_QUOTE_PATTERN =
+            "<blockquote style = \"margin: 0;-webkit-margin:0;\">";
+
     /**
      * When generating previews, Spannable objects that can't be converted into a String are
      * represented as 0xfffc. When displayed, these show up as undisplayed squares. These constants
@@ -343,8 +346,25 @@ public class HtmlConverter {
         // Above we replaced > with <gt>, now make it &gt;
         text = text.replaceAll("<gt>", "&gt;");
 
-        return text;
+        return fixHtml(text);
     }
+
+    /**
+     * Remove the extra blockquote
+     * @param htmlText
+     * @return
+     */
+    public static String fixHtml(String htmlText) {
+        if (htmlText == null) {
+            return null;
+        }
+        String regEx = "<blockquote(\\S*?)[^>]*>";
+        Pattern p = Pattern.compile(regEx);
+        Matcher matcher = p.matcher(htmlText);
+        String result = matcher.replaceAll(BLOCK_QUOTE_PATTERN);
+        return result;
+    }
+
 
     private static void appendchar(StringBuilder buff, int c) {
         switch (c) {
